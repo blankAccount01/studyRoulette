@@ -6,6 +6,9 @@
     <title>Study Roulette</title>
 </head>
 <style>
+    :root{
+        --themeColor:#EBAB70;
+    }
     body{
         margin: 0px;
     }
@@ -36,7 +39,7 @@
         width: 300px;
         height: 340px;
         border-radius: 5px;
-        background-color: rgb(255, 255, 255);
+        background-color: rgba(255, 255, 255,0.8);
         font-size: 20px;
         font-weight: 600;
         display: flex;
@@ -66,19 +69,18 @@
         align-items: flex-start;
         width: 240px;
     }
-
     #sliderMain{
         width: 200px;
         height: 200px;
         border-radius: 50%;
-        border: 20px solid #ddd;
+        border: 20px solid rgba(0, 0, 0, 0.3);
         position: relative;
     }
 
     #sliderThumb{
         width: 20px;
         height: 20px;
-        background-color: #4CAF50;
+        background-color: #6cdc71;
         border-radius: 50%;
         position: absolute;
         top: 0;
@@ -142,7 +144,7 @@
         font-size: 50px;
         font-family: Arial, Helvetica, sans-serif;
         font-weight: bold;
-        color: #CDEBF7;
+        color: var(--themeColor);
         user-select: none;
     }
     #tokenText {
@@ -155,7 +157,7 @@
         font-size: 50px;
         font-family: Arial, Helvetica, sans-serif;
         font-weight: bold;
-        color: #CDEBF7;
+        color: var(--themeColor);
         user-select: none;
         text-align: right;
         white-space: nowrap;
@@ -169,7 +171,7 @@
         padding: 10px 30px;
         background-color: rgb(255, 255, 255);
         border-radius: 30px ;
-        color: #CDEBF7;
+        color: var(--themeColor);
         user-select: none;
         text-align: right;
         white-space: nowrap;
@@ -231,7 +233,7 @@
         border-radius: 10px ;
         font-size: 40px;
         font-weight: bold;
-        color: #CDEBF7;
+        color: var(--themeColor);
         font-family: Arial, Helvetica, sans-serif;
         overflow:hidden;
     }
@@ -266,6 +268,8 @@
         align-items: center;
         justify-content: center;
         width: 60%;
+        border-radius: 20px;
+        background-color: rgba(255, 255, 255, 0.8);
     }
     .timelines{
         border-radius: 10px;
@@ -282,7 +286,7 @@
         flex: 1;
     }
     .restSegment{
-        background-color: #CDEBF7;
+        background-color: var(--themeColor);
     }
     #title{
         font-weight: bold;
@@ -318,15 +322,54 @@
     .timelines:hover .timeLabel{
         opacity:1;
     }
+    .background {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        width: 100vw;
+        height: 100vh;
+        background-image: url(backsplash.png);
+        background-size: cover;
+    }
+    .background::after{
+        content: '';
+        background-color: rgba(0, 0, 0, 0.2);
+        position: absolute;
+        z-index: 1;
+        width: 100vw;
+        height: 100vh;
+    }
+    canvas {
+        position: absolute;
+        top: 0;
+        left: 0;
+        z-index: 1;
+    }
+    #restart{
+        position: absolute;
+        top: 85%;
+        right: 3%;
+        padding: 10px 30px;
+        background-color: rgba(255, 255, 255,0.95);
+        border-radius: 30px ;
+        font-size: 30px;
+        font-family: Arial, Helvetica, sans-serif;
+        font-weight: bold;
+        color: var(--themeColor);
+        user-select: none;
+    }
 </style>
 <body style="overflow: hidden;">
     <div id="introScreen" style="display: block;">
+        <div class="background"></div>
         <div class="container">
-            <div style="margin-bottom: 40px; font-size: 60px; font-family:Arial, Helvetica, sans-serif;">Study Roulette</div>
+            <div style="color: #ffffff; margin-bottom: 40px; font-size: 60px; font-family:Arial, Helvetica, sans-serif;">Study Roulette</div>
             <button class="button" page="2">Play</button>
         </div>
     </div>
     <div id="stageSelect" style="display: none;">
+        <div class="background"></div>
         <div class="container" style="width: 80vw;">
             <div class="stageButtonContainer">
                 <button class="stageButton" page="3" difficulty="easy">
@@ -364,7 +407,8 @@
         </div>
     </div>
     <div id="studySelect" style="visibility: hidden;">
-        <div class="container" style="flex-direction: row;">
+        <div class="background"></div>
+        <div class="container" style="flex-direction: row; border-radius: 20px; background-color: rgba(255, 255, 255, 0.8);">
             <div style="display: flex; align-items: center;"></div>
                 <div id="sliderContainer">
                     <div id="sliderMain">
@@ -382,10 +426,12 @@
         </div>
     </div>
     <div id="mainApp" style="display: none; overflow:hidden">
-        <div id="threeJSRender"></div>
-        <div id="tokenText">Tokens: 5</div>
-        <div id="endButton">End</div>
-        <div id="infoBar">
+        <div id="threeJSRender">
+            <div class="background" style="z-index: 1;"></div>
+        </div>
+        <div id="tokenText" style="z-index: 5">Tokens: 5</div>
+        <div id="endButton" style="z-index: 5">End</div>
+        <div id="infoBar" style="z-index: 5">
             <div id="header">Odds</div>
             <div class="info">12 => +50%</div>
             <div class="info">11 => +40%</div>
@@ -400,9 +446,10 @@
             <div class="info">2 => -50%</div>  
             <div id="barButton">||</div>          
         </div>
-        <div id="resultBar">Rolled 7 => Tokens: +0%</div>
+        <div id="resultBar" style="z-index: 5">Rolled 7 => Tokens: +0%</div>
     </div>
     <div id="results" style="display: none;">
+        <div class="background" style="z-index: 0;"></div>
         <div id="options">
             <div id="title">Recommended Study Schedules</div>
             <div class="optionContainer">
@@ -418,6 +465,9 @@
                 <div class="timelines" id="option3"></div>
             </div>
             <div class="celebration" id="title" style="font-size: 20px; margin-top: 40px;">Thank you for using Study Roulette 🥳</div>
+        </div>
+        <div id="restart">
+            Restart?
         </div>
         
     </div>
@@ -550,6 +600,9 @@
                 }
             }
         });
+        document.getElementById('restart').addEventListener('click', function() {
+            change(1);
+        });
         document.querySelector(".celebration").addEventListener("mouseenter", ()=>{
             window.confetti({
                 particleCount:100,
@@ -626,16 +679,18 @@
 
     function renderThreeJS(){
     
-        const scene = new THREE.Scene();
-        const camera = new THREE.PerspectiveCamera(75, window.innerWidth/window.innerHeight, 0.1, 1000);
-        renderer = new THREE.WebGLRenderer({ antialias: true });
+        renderer = new THREE.WebGLRenderer({ antialias: true,alpha: true});
 
-        scene.background = new THREE.Color(0xCDEBF7);
+        //scene.background = new THREE.Color(getComputedStyle(document.documentElement).getPropertyValue('--themeColor').trim());
 
         const container = document.getElementById('threeJSRender');
         renderer.setSize(container.clientWidth, container.clientHeight);
         renderer.setPixelRatio(window.devicePixelRatio);
         container.appendChild(renderer.domElement);
+        renderer.setClearColor(0x000000, 0);
+
+        const scene = new THREE.Scene();
+        const camera = new THREE.PerspectiveCamera(75, window.innerWidth/window.innerHeight, 0.1, 1000);
 
         const composer = new EffectComposer(renderer);
         composer.addPass(new RenderPass(scene, camera));
