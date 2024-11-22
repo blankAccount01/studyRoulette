@@ -1,0 +1,911 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Study Roulette</title>
+</head>
+<style>
+    body{
+        margin: 0px;
+    }
+    .container {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        text-align: center;
+        padding: 20px;
+        padding-bottom: 30px;
+        padding-top: 30px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .stageButtonContainer {
+        display: flex;
+        justify-content: space-around;
+        gap: 20px;
+        width: 100%;
+        max-width: 800px;
+    }
+
+    .stageButton {
+        width: 300px;
+        height: 340px;
+        border-radius: 5px;
+        background-color: rgb(255, 255, 255);
+        font-size: 20px;
+        font-weight: 600;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        text-align: center;
+        padding: 20px;
+        box-sizing: border-box;
+        line-height: 25px;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    #sliderContainer {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        width: 240px;
+        height: 240px;
+    }
+    #rightSide {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        margin-left: 30px;
+        height: 240px;
+        align-items: flex-start;
+        width: 240px;
+    }
+
+    #sliderMain{
+        width: 200px;
+        height: 200px;
+        border-radius: 50%;
+        border: 20px solid #ddd;
+        position: relative;
+    }
+
+    #sliderThumb{
+        width: 20px;
+        height: 20px;
+        background-color: #4CAF50;
+        border-radius: 50%;
+        position: absolute;
+        top: 0;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        cursor: pointer;
+    }
+
+    #sliderValue {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        font-size: 24px;
+        font-weight: bold;
+        color: #333;
+        pointer-events: none; 
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        text-align: center;
+    }
+
+    .button{
+        width: 280px;
+        height: 50px;
+        border-radius: 20px;
+        font-size: 20px;
+    }
+
+    .difficultyText {
+        font-size: 30px;
+        font-weight: bold;
+        margin-bottom: 10px;
+    }
+
+    #begin{
+        width:240px;
+        height: 100px;
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        font-size: 30px;
+        font-weight: 600;
+    }
+
+    #conversionCalculator{
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        font-size: 30px;
+    }
+
+    #threeJSRender {
+        width: 100vw;
+        height: 100vh;
+        overflow: hidden;
+        background: #000;
+    }
+    #endButton {
+        position: absolute;
+        top: 85%;
+        right: 3%;
+        padding: 10px 30px;
+        background-color: rgb(255, 255, 255);
+        border-radius: 30px ;
+        font-size: 50px;
+        font-family: Arial, Helvetica, sans-serif;
+        font-weight: bold;
+        color: #CDEBF7;
+        user-select: none;
+    }
+    #tokenText {
+        position: absolute;
+        top: 5%;
+        right: 3%;
+        padding: 10px 30px;
+        background-color: rgb(255, 255, 255);
+        border-radius: 30px ;
+        font-size: 50px;
+        font-family: Arial, Helvetica, sans-serif;
+        font-weight: bold;
+        color: #CDEBF7;
+        user-select: none;
+        text-align: right;
+        white-space: nowrap;
+    }
+
+    #infoBar {
+        position: absolute;
+        top: 50%;
+        transform: translate(0%, -50%);
+        right: 100%;
+        padding: 10px 30px;
+        background-color: rgb(255, 255, 255);
+        border-radius: 30px ;
+        color: #CDEBF7;
+        user-select: none;
+        text-align: right;
+        white-space: nowrap;
+    }
+    .info{
+        font-weight: bold;
+        font-family: Arial, Helvetica, sans-serif;
+        font-size: 28px;
+        margin-bottom: 5px;
+        text-align: center;
+    }
+    #header{
+        text-align: center;
+        font-size: 35px;
+        font-weight: bold;
+        font-family: Arial, Helvetica, sans-serif;
+        margin-bottom: 5px;
+    }
+    #barButton{
+        position: absolute;
+        top: 50%;
+        left: 105%;
+        transform: translate(-50%, -50%);
+        padding: 10px;
+        background-color: rgb(255, 255, 255);
+        border-radius: 10px ;
+        font-size: 30px;
+        font-weight: bold;
+    }
+    .animateBar1{
+        animation: move 1s ease-out forwards;
+    }
+    .animateBar2{
+        animation: move2 1s ease-out forwards;
+    }
+    @keyframes move {
+        0%{
+            right: 82%;
+        }
+        100%{
+            right: 100%;
+        }
+    }
+    @keyframes move2 {
+        0%{
+            right: 100%;
+        }
+        100%{
+            right: 82%;
+        }
+    }
+    #resultBar{
+        position: absolute;
+        top: 100%;
+        left: 50%;
+        transform: translate(-50%, 0%);
+        padding: 10px;
+        background-color: rgb(255, 255, 255);
+        border-radius: 10px ;
+        font-size: 40px;
+        font-weight: bold;
+        color: #CDEBF7;
+        font-family: Arial, Helvetica, sans-serif;
+        overflow:hidden;
+    }
+    .animateBar3{
+        animation: move3 4s ease-out forwards;
+    }
+    @keyframes move3 {
+        0%{
+            top: 100%;
+        }
+        5%{
+            top: 85%;
+        }
+        90%{
+            top: 85%;
+        }
+        950%{
+            top: 100%;
+        }
+    }
+    #options{
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        text-align: center;
+        padding: 20px;
+        padding-bottom: 30px;
+        padding-top: 30px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        width: 60%;
+    }
+    .timelines{
+        border-radius: 10px;
+        background-color: #333;
+        width: 100%;
+        height: 50px;
+        display: flex;
+        flex-direction:row;
+        overflow: hidden;
+        transition: transform 0.5s;
+        backface-visibility: hidden;
+    }
+    .segment{
+        flex: 1;
+    }
+    .restSegment{
+        background-color: #CDEBF7;
+    }
+    #title{
+        font-weight: bold;
+        font-family: Arial, Helvetica, sans-serif;
+        font-size: 28px;
+        margin-bottom: 5px;
+        text-align: center;
+    }
+    .optionContainer{
+        margin-top: 3%;
+        margin-bottom: 3%;
+        width: 90%;
+        height: 50px;
+    }
+    .timelines:hover{
+        transform: scale(1.05);
+        image-rendering: crisp-edges;
+        filter: blur(0.2px);
+    }
+    .timeLabel{
+        position: relative;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        text-align: center;
+        font-weight: bold;
+        font-family: Arial, Helvetica, sans-serif;
+        font-size: 20px;
+        color: rgb(255, 255, 255);
+        opacity: 0;
+        transition: opacity 0.5s;
+    }
+    .timelines:hover .timeLabel{
+        opacity:1;
+    }
+</style>
+<body style="overflow: hidden;">
+    <div id="introScreen" style="display: block;">
+        <div class="container">
+            <div style="margin-bottom: 40px; font-size: 60px; font-family:Arial, Helvetica, sans-serif;">Study Roulette</div>
+            <button class="button" page="2">Play</button>
+        </div>
+    </div>
+    <div id="stageSelect" style="display: none;">
+        <div class="container" style="width: 80vw;">
+            <div class="stageButtonContainer">
+                <button class="stageButton" page="3" difficulty="easy">
+                    <div class="difficultyText">Easy</div>
+                    <div>
+                        For a casual study session on the holidays
+                        <br>
+                        More gaming than study time
+                        <br>
+                        Just enough study to feel productive
+                    </div>
+                </button>
+                <button class="stageButton" page="3" difficulty="medium">
+                    <div class="difficultyText">Medium</div>
+                    <div>
+                        For a normal study session during the weekday
+                        <br>
+                        Moderate study time
+                        <br>
+                        Enough study time to complete all your homework
+                    </div>
+                </button>
+                <button class="stageButton" page="3" difficulty="hard">
+                    <div class="difficultyText">Hard</div>
+                    <div>
+                        For a cram study session before exam block
+                        <br>
+                        Ample study time
+                        <br>
+                        Time to memorise 10 chapters before the exam tomorrow
+                    </div>
+                </button>
+            </div>
+            
+        </div>
+    </div>
+    <div id="studySelect" style="visibility: hidden;">
+        <div class="container" style="flex-direction: row;">
+            <div style="display: flex; align-items: center;"></div>
+                <div id="sliderContainer">
+                    <div id="sliderMain">
+                        <div id="sliderThumb"></div>
+                        <div id="sliderValue">0</div>
+                    </div>
+                </div>
+                <div id="rightSide">
+                    <div id="conversionCalculator">
+                        0.5 hours = 5 tokens
+                    </div>
+                    <button id="begin" page="4">Begin</button>    
+                </div>
+            </div>
+        </div>
+    </div>
+    <div id="mainApp" style="display: none; overflow:hidden">
+        <div id="threeJSRender"></div>
+        <div id="tokenText">Tokens: 5</div>
+        <div id="endButton">End</div>
+        <div id="infoBar">
+            <div id="header">Odds</div>
+            <div class="info">12 => +50%</div>
+            <div class="info">11 => +40%</div>
+            <div class="info">10 => +30%</div>
+            <div class="info">9 => +20%</div>
+            <div class="info">8 => +10%</div>
+            <div class="info">7 => + 0%</div>
+            <div class="info">6 => -10%</div>
+            <div class="info">5 => -20%</div>
+            <div class="info">4 => -30%</div>
+            <div class="info">3 => -40%</div>
+            <div class="info">2 => -50%</div>  
+            <div id="barButton">||</div>          
+        </div>
+        <div id="resultBar">Rolled 7 => Tokens: +0%</div>
+    </div>
+    <div id="results" style="display: none;">
+        <div id="options">
+            <div id="title">Recommended Study Schedules</div>
+            <div class="optionContainer">
+                <div id="title" style="text-align: left; font-size: 20px;">Option 1:</div>
+                <div class="timelines" id="option1"></div>
+            </div>
+            <div class="optionContainer">
+                <div id="title" style="text-align: left; font-size: 20px;">Option 2:</div>
+                <div class="timelines" id="option2"></div>
+            </div>
+            <div class="optionContainer">
+                <div id="title" style="text-align: left; font-size: 20px;">Option 3:</div>
+                <div class="timelines" id="option3"></div>
+            </div>
+            <div class="celebration" id="title" style="font-size: 20px; margin-top: 40px;">Thank you for using Study Roulette 🥳</div>
+        </div>
+        
+    </div>
+</body>
+<script type="importmap">
+    {
+      "imports": {
+        "three": "https://cdn.jsdelivr.net/npm/three@0.169.0/build/three.module.js",
+        "three/addons/": "https://cdn.jsdelivr.net/npm/three@0.169.0/examples/jsm/",
+        "three/examples/jsm/": "https://cdn.jsdelivr.net/npm/three@0.169.0/examples/jsm/",
+        "canvas-confetti": "https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"
+      }
+    }
+</script>
+<script type="module">
+    import * as THREE from 'three';
+    import { GLTFLoader } from 'three/addons/loaders/GLTFLoader.js';
+    import { EffectComposer } from 'three/examples/jsm/postprocessing/EffectComposer.js';
+    import { RenderPass } from 'three/examples/jsm/postprocessing/RenderPass.js';
+    import { UnrealBloomPass } from 'three/examples/jsm/postprocessing/UnrealBloomPass.js';
+    import * as confetti from "canvas-confetti";
+
+    let difficulty = "easy";
+    let animationId,renderer;
+    let sliderOut = false;
+    let sliderMoving = false;
+    let values = [1.0,0.8,0.6,0.4,0.2,0,-0.2,-0.4,-0.6,-0.8,-1.0];
+    let easy =   [2.0,1.6,1.2,0.8,0.4,0,-0.2,-0.4,-0.6,-0.8,-1.0];
+    let hard =   [1.0,0.8,0.6,0.4,0.2,0,-0.4,-0.8,-1.2,-1.6,-2.0];
+    let sliderTime = 3*60;
+
+    function change(page) {
+        if (page==1){
+            document.getElementById("introScreen").style.display='block';
+            document.getElementById("stageSelect").style.display='none';
+            document.getElementById("studySelect").style.visibility='hidden';
+            document.getElementById("mainApp").style.display='none';
+            document.getElementById("results").style.display='none';
+        }else if (page==2){
+            document.getElementById("introScreen").style.display='none';
+            document.getElementById("stageSelect").style.display='block';
+            document.getElementById("studySelect").style.visibility='hidden';
+            document.getElementById("mainApp").style.display='none';
+            document.getElementById("results").style.display='none';
+        }
+        else if (page==3){
+            document.getElementById("introScreen").style.display='none';
+            document.getElementById("stageSelect").style.display='none';
+            document.getElementById("studySelect").style.visibility='visible';
+            document.getElementById("mainApp").style.display='none';
+            document.getElementById("results").style.display='none';
+            
+        }else if (page==4){
+            document.getElementById("introScreen").style.display='none';
+            document.getElementById("stageSelect").style.display='none';
+            document.getElementById("studySelect").style.visibility='hidden';
+            document.getElementById("mainApp").style.display='block';
+            document.getElementById("results").style.display='none';
+            renderThreeJS();
+        }
+        else if (page==5){
+            document.getElementById("introScreen").style.display='none';
+            document.getElementById("stageSelect").style.display='none';
+            document.getElementById("studySelect").style.visibility='hidden';
+            document.getElementById("mainApp").style.display='none';
+            document.getElementById("results").style.display='block';
+            renderResults();
+        }
+    }
+    function difficultySelect(difficultyIn) {
+        if (difficultyIn=="easy"){difficulty="easy"; values = easy;}
+        if (difficultyIn=="medium"){difficulty="medium"}
+        if (difficultyIn=="hard"){difficulty="hard"; values = hard;sliderTime=5*60}
+        let infoDiv = document.querySelectorAll(".info");
+        infoDiv.forEach((div,index)=>{
+            if ((values[index]*100)>0){
+                div.textContent = ''+(12-index)+' => +'+(values[index]*100)+"%"
+            }else{
+                div.textContent = ''+(12-index)+' => '+(values[index]*100)+"%"
+            }
+            
+        });
+    }
+
+    let infoBar = document.getElementById('infoBar');
+    infoBar.addEventListener('animationstart', ()=>{
+        sliderMoving = true;
+    });
+    infoBar.addEventListener('animationend', ()=>{
+        sliderMoving = false;
+    });
+    
+    document.addEventListener("DOMContentLoaded", ()=>{
+        let pageButtons = document.querySelectorAll('[page]');
+            pageButtons.forEach(button => {
+                button.addEventListener("click", () => {
+                    let page = button.getAttribute("page");
+                    change(Number(page));
+            });
+        });
+        let stageButtons = document.querySelectorAll('[difficulty]');
+            stageButtons.forEach(button => {
+                button.addEventListener("click", () => {
+                    let difficulty = button.getAttribute("difficulty");
+                    difficultySelect(difficulty);
+            });
+        });
+        document.getElementById('endButton').addEventListener('click', function() {
+            event.stopPropagation();
+            cancelAnimationFrame(animationId);
+            renderer.dispose();
+            renderer.domElement.remove();
+            change(5);
+        });
+        document.getElementById('barButton').addEventListener('click', function() {
+            event.stopPropagation();
+            if (!sliderMoving){
+                if (sliderOut){
+                    if (infoBar.classList.contains('animateBar2')){
+                        infoBar.classList.remove('animateBar2');
+                    }
+                    infoBar.classList.add('animateBar1');
+                    sliderOut = false;
+                }else{
+                    if (infoBar.classList.contains('animateBar1')){
+                        infoBar.classList.remove('animateBar1');
+                    }
+                    infoBar.classList.add('animateBar2');
+                    sliderOut = true;
+                }
+            }
+        });
+        document.querySelector(".celebration").addEventListener("mouseenter", ()=>{
+            window.confetti({
+                particleCount:100,
+                spread:70,
+                origin:{x:0.5,y:0.8}
+            })
+        });
+
+    });
+    const slider = document.getElementById("sliderMain");
+    const thumb = document.getElementById("sliderThumb");
+    const sliderValue = document.getElementById("sliderValue");
+    const conversionValue = document.getElementById("conversionCalculator");
+
+    let currentAngle = 0;
+    let tokens = 10;
+    let sliderRadius = (slider.offsetWidth / 2) - 10;
+    let time = 30;
+
+    function setThumbPosition(angle) {
+        angle-=90;
+        const radians = angle * (Math.PI / 180);
+        const x = sliderRadius * Math.cos(radians) + sliderRadius - thumb.offsetWidth / 2;
+        const y = sliderRadius * Math.sin(radians) + sliderRadius - thumb.offsetHeight / 2;
+
+        thumb.style.left = `${x}px`;
+        thumb.style.top = `${y}px`;
+    }
+
+    function calculateAngle(e) {
+        const rect = slider.getBoundingClientRect();
+        const centerX = rect.left + sliderRadius;
+        const centerY = rect.top + sliderRadius;
+
+        const dx = e.clientX - centerX;
+        const dy = e.clientY - centerY;
+
+        let angle = Math.atan2(dy, dx) * (180 / Math.PI);
+        angle = (angle + 90) % 360; 
+        if (angle < 0) angle += 360;
+
+        return angle;
+    }
+
+    function calculateConversion(value) {
+        let tokens = Math.round(value/6);
+        return tokens;
+    }
+
+    thumb.addEventListener("mousedown", function(e) {
+        e.preventDefault();
+        const onMouseMove = (e) => {
+            currentAngle = calculateAngle(e);
+            setThumbPosition(currentAngle);
+
+            time = (Math.round(((Math.round((currentAngle / 360) * (sliderTime-30))+30)/60)*10)/10)*60;
+            tokens = calculateConversion(time);
+            sliderValue.textContent = time/60+' hours';
+            conversionValue.textContent= time/60+' hours = '+tokens+' tokens';;
+        };
+
+        const onMouseUp = () => {
+            document.removeEventListener("mousemove", onMouseMove);
+            document.removeEventListener("mouseup", onMouseUp);
+        };
+
+        document.addEventListener("mousemove", onMouseMove);
+        document.addEventListener("mouseup", onMouseUp);
+    });
+
+    
+    setThumbPosition(0);
+    sliderValue.textContent = "0.5 hours";
+
+    function renderThreeJS(){
+    
+        const scene = new THREE.Scene();
+        const camera = new THREE.PerspectiveCamera(75, window.innerWidth/window.innerHeight, 0.1, 1000);
+        renderer = new THREE.WebGLRenderer({ antialias: true });
+
+        scene.background = new THREE.Color(0xCDEBF7);
+
+        const container = document.getElementById('threeJSRender');
+        renderer.setSize(container.clientWidth, container.clientHeight);
+        renderer.setPixelRatio(window.devicePixelRatio);
+        container.appendChild(renderer.domElement);
+
+        const composer = new EffectComposer(renderer);
+        composer.addPass(new RenderPass(scene, camera));
+
+        const bloom = new UnrealBloomPass(new THREE.Vector2(window.innerWidth,window.innerHeight), 1.5, 1, 0.4);
+        composer.addPass(bloom);
+
+        const ambientLight = new THREE.AmbientLight(0x404040, 10);
+        scene.add(ambientLight);
+
+        const light1 = new THREE.DirectionalLight(0xffffff, 3);
+        light1.position.set(5,5,5);
+        light1.castShadow = true;
+        scene.add(light1);
+
+        const light2 = new THREE.DirectionalLight(0xFFECCD, 0.1);
+        light2.position.set(-5,-5,-40);
+        scene.add(light2);
+
+        const loader = new GLTFLoader();
+        let scale = 0.6;
+        let dice;
+        loader.load('./dice.glb', function(gltf){
+            dice = gltf.scene;
+            dice.scale.set(scale, scale, scale);
+            dice.position.set(-1, 1, 0);
+            scene.add(dice);
+        });
+
+        let dice2;
+        loader.load('./dice.glb', function(gltf){
+            dice2 = gltf.scene;
+            dice2.scale.set(scale, scale, scale);
+            dice2.position.set(1, -1, 0);
+            scene.add(dice2);
+        });
+
+        camera.position.z = 4;
+
+        const tokenText = document.getElementById('tokenText');
+        tokenText.innerText="Tokens: "+tokens;
+
+        let targetRotation = {x: 0, y: 0,z: 0};
+        let targetRotation2 = {x: 0, y: 0,z: 0};
+        let rolling = false;
+        let aligned = false;
+        let firstRoll = true;
+        let d1Value = 0;
+        let d2Value = 0;
+
+        function animate(){
+            animationId = requestAnimationFrame(animate);
+            if (rolling && dice && dice2) {
+                const speed = 0.05;
+                dice.rotation.x +=(targetRotation.x - dice.rotation.x) * speed;
+                dice.rotation.y +=(targetRotation.y - dice.rotation.y) * speed;
+                dice.rotation.z +=(targetRotation.z - dice.rotation.z) * speed;
+
+                dice2.rotation.x +=(targetRotation2.x - dice2.rotation.x) * speed;
+                dice2.rotation.y +=(targetRotation2.y - dice2.rotation.y) * speed;
+                dice2.rotation.z +=(targetRotation2.z - dice2.rotation.z) * speed;
+                const close = 0.01;
+                if ((Math.abs(targetRotation.x - dice.rotation.x) < close) &&
+                    (Math.abs(targetRotation.y - dice.rotation.y) < close) &&
+                    (Math.abs(targetRotation.z - dice.rotation.z) < close) &&
+                    (Math.abs(targetRotation2.x - dice2.rotation.x) < close) &&
+                    (Math.abs(targetRotation2.y - dice2.rotation.y) < close) &&
+                    (Math.abs(targetRotation2.z - dice2.rotation.z) < close)){
+                    if (aligned==false){
+                        faceCam();
+                        aligned=true;
+                    }else{
+                        d1Value = getSide(dice, camera);
+                        d2Value = getSide(dice2, camera);
+                        console.log("Combined "+(d2Value+d1Value));
+                        tokenCalc((d2Value+d1Value));
+                        rolling = false;
+                        aligned=false;
+                    } 
+                }
+            }
+            //composer.render();
+            renderer.render(scene, camera)
+            
+        }
+        function tokenCalc(value){
+            let tokenAddition = 0; //let changeValue = 0;
+            if ((value == 12)){tokenAddition=(values[0]*tokens);};//1.6 //changeValue = 50;
+            if ((value == 11)){tokenAddition=(values[1]*tokens);};//1.5 //changeValue = 40;
+            if ((value == 10)){tokenAddition=(values[2]*tokens);};//1.45 //changeValue = 30;
+            if ((value == 9)){tokenAddition=(values[3]*tokens);};//0.925 //changeValue = 20;
+            if ((value == 8)){tokenAddition=(values[4]*tokens);};//0.825 //changeValue = 10;
+            if ((value == 7)){tokenAddition=values[5];};//0.72 //changeValue = 0;
+            if ((value == 6)){tokenAddition=(values[6]*tokens);};//0.825 //changeValue = -10;
+            if ((value == 5)){tokenAddition=(values[7]*tokens);};//0.925 //changeValue = -20;
+            if ((value == 4)){tokenAddition=(values[8]*tokens);};//1.45 //changeValue = -30;
+            if ((value == 3)){tokenAddition=(values[9]*tokens);};//1.5 //changeValue = -40;
+            if ((value == 2)){tokenAddition=(values[10]*tokens);};//1.6 //changeValue = -50; 
+            tokenAddition = Math.round(tokenAddition);
+            tokens += tokenAddition
+            const tokenText = document.getElementById('tokenText');
+            tokenText.innerText="Tokens: "+tokens;
+
+            let resultsBar = document.getElementById('resultBar');
+            if (resultsBar.classList.contains('animateBar3')){
+                resultsBar.classList.remove('animateBar3');
+            }
+            void resultsBar.offsetWidth; //reflow?
+            resultsBar.classList.add('animateBar3');
+            if (tokenAddition>0){
+                resultsBar.innerText = "Rolled "+value+" => Tokens: +"+tokenAddition;
+            }else{
+                resultsBar.innerText = "Rolled "+value+" => Tokens: "+tokenAddition;
+            }
+            
+
+        }
+
+        function faceCam(){
+            targetRotation.x = Math.round(dice.rotation.x / (Math.PI / 2)) * (Math.PI / 2);
+            targetRotation.y = Math.round(dice.rotation.y / (Math.PI / 2)) * (Math.PI / 2);
+            targetRotation.z = Math.round(dice.rotation.z / (Math.PI / 2)) * (Math.PI / 2);
+
+            targetRotation2.x = Math.round(dice2.rotation.x / (Math.PI / 2)) * (Math.PI / 2),
+            targetRotation2.y = Math.round(dice2.rotation.y / (Math.PI / 2)) * (Math.PI / 2),
+            targetRotation2.z = Math.round(dice2.rotation.z / (Math.PI / 2)) * (Math.PI / 2)
+        }
+
+        function getSide(dice, camera){
+            const diceMatrix = dice.matrixWorld;
+            const facingUp = new THREE.Vector3(0,0,-1).applyQuaternion(camera.quaternion);
+
+            const faceNormals=[
+                new THREE.Vector3(0,0,1),
+                new THREE.Vector3(0,0,-1),
+                new THREE.Vector3(0,1,0),
+                new THREE.Vector3(0,-1,0),
+                new THREE.Vector3(1,0,0),
+                new THREE.Vector3(-1,0,0)
+            ]
+            let start = -Infinity;
+            let facingSide = null;
+
+            faceNormals.forEach((normal,index)=>{
+                const worldNormal = normal.clone().applyMatrix4(diceMatrix).normalize();
+                const thing = worldNormal.dot(facingUp);
+                if (thing > start){
+                    start = thing;
+                    facingSide = index;
+                }
+            });
+
+            const faceNames = [2,5,1,6,4,3];
+            return faceNames[facingSide];
+        }
+
+        function rollDice(){
+            if (rolling) return;
+            rolling = true;
+
+            let spins = Math.floor(Math.random() * 10 + 10); 
+            targetRotation.x=Math.random()*Math.PI*4+spins*Math.PI * 2;
+            targetRotation.y=Math.random()*Math.PI*4+spins*Math.PI * 2;
+            targetRotation.z=Math.random()*Math.PI*4+spins*Math.PI * 2;
+
+            targetRotation2.x=Math.random()*Math.PI*4+spins*Math.PI * 2;
+            targetRotation2.y=Math.random()*Math.PI*4+spins*Math.PI * 2;
+            targetRotation2.z=Math.random()*Math.PI*4+spins*Math.PI * 2;
+
+            targetRotation.x = Math.round(targetRotation.x / (Math.PI / 2)) * (Math.PI / 2);
+            targetRotation.y = Math.round(targetRotation.y / (Math.PI / 2)) * (Math.PI / 2);
+            targetRotation.z = Math.round(targetRotation.z / (Math.PI / 2)) * (Math.PI / 2);
+
+            targetRotation2.x = Math.round(targetRotation2.x / (Math.PI / 2)) * (Math.PI / 2);
+            targetRotation2.y = Math.round(targetRotation2.y / (Math.PI / 2)) * (Math.PI / 2);
+            targetRotation2.z = Math.round(targetRotation2.z / (Math.PI / 2)) * (Math.PI / 2);
+        }
+        window.addEventListener('click', ()=>{
+            if (firstRoll == true){
+                firstRoll = false;
+            }else{
+                rollDice();
+            }
+            
+        });
+        window.addEventListener('resize', ()=>{
+            renderer.setSize(container.clientWidth, container.clientHeight);
+            camera.aspect = container.clientWidth / container.clientHeight;
+            camera.updateProjectionMatrix();
+        });
+
+        animate();
+    }
+
+    function renderResults(){
+        if (tokens<0){
+            time+=Math.abs(tokens);
+            tokens=0;
+        }
+        let totalTime = time+tokens;
+        let breaks = Math.round(time/60);
+        if (breaks<=0){breaks=1;};
+        let segSize = Math.round(time/breaks);
+        let timeline = document.getElementById('option1')
+        let targetDiv;
+        let labelDiv;
+        for (let i = 0; i < breaks; i++) {
+            targetDiv = document.createElement('div');
+            targetDiv.style.flex = ""+segSize
+            labelDiv = document.createElement('div');
+            labelDiv.innerText = segSize+"min"
+            labelDiv.className = "timeLabel";
+            targetDiv.appendChild(labelDiv);
+            timeline.appendChild(targetDiv);
+
+            targetDiv = document.createElement('div');
+            targetDiv.style.flex = ""+Math.round(tokens/breaks);
+            targetDiv.className = "restSegment";
+            labelDiv = document.createElement('div');
+            labelDiv.innerText = Math.round(tokens/breaks)+"min"
+            labelDiv.className = "timeLabel";
+            targetDiv.appendChild(labelDiv);
+            timeline.appendChild(targetDiv);
+        }
+
+        let timeline2 = document.getElementById('option2');
+
+        targetDiv = document.createElement('div');
+        targetDiv.style.flex = ""+Math.round(totalTime/2);
+        labelDiv = document.createElement('div');
+        labelDiv.innerText = Math.round(totalTime/2)+"min"
+        labelDiv.className = "timeLabel";
+        targetDiv.appendChild(labelDiv);
+        timeline2.appendChild(targetDiv);
+
+        targetDiv = document.createElement('div');
+        targetDiv.style.flex = ""+tokens;
+        targetDiv.className = "restSegment";
+        labelDiv = document.createElement('div');
+        labelDiv.innerText = tokens+"min"
+        labelDiv.className = "timeLabel";
+        targetDiv.appendChild(labelDiv);
+        timeline2.appendChild(targetDiv);
+
+        targetDiv = document.createElement('div');
+        targetDiv.style.flex = ""+Math.round(totalTime/2);
+        labelDiv = document.createElement('div');
+        labelDiv.innerText = Math.round(totalTime/2)+"min"
+        labelDiv.className = "timeLabel";
+        targetDiv.appendChild(labelDiv);
+        timeline2.appendChild(targetDiv);
+
+        let timeline3 = document.getElementById('option3')
+        targetDiv = document.createElement('div');
+        targetDiv.style.flex = ""+totalTime;
+        labelDiv = document.createElement('div');
+        labelDiv.innerText = totalTime+"min"
+        labelDiv.className = "timeLabel";
+        targetDiv.appendChild(labelDiv);
+        timeline3.appendChild(targetDiv);
+
+        targetDiv = document.createElement('div');
+        targetDiv.style.flex = ""+tokens;
+        targetDiv.className = "restSegment";
+        labelDiv = document.createElement('div');
+        labelDiv.innerText = tokens+"min"
+        labelDiv.className = "timeLabel";
+        targetDiv.appendChild(labelDiv);
+        timeline3.appendChild(targetDiv);
+
+    }
+    </script>
+</html>
