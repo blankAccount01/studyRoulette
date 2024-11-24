@@ -7,7 +7,7 @@
 # About studyRoulette
 
 Do you want to escape boring, montonous study schedules?<br><br>
-Introducing studyRoulette, a web app where you roll dice to determine how your break is from studying!<br><br> Choose the amount of time that you want to study for and you'll get corresponding tokens, which you can use roll the dice. Dice rolls above 7, increase the amount of tokens while dice rolls that are below seven, decrease the amount of tokens. <br><br>But beware, it is possible to get a negative amount of tokens which add to your total study time! At the end, each token is converted into a minuete of break and studyRoulette will give you 3 study schedules to choose from.<br><br> Hope you have fun!
+Introducing studyRoulette, a web app where you roll dice to determine how your break is from studying!<br><br> Choose the amount of time that you want to study for and you'll get corresponding tokens, which you can use roll the dice. Dice rolls above 7, increase the amount of tokens while dice rolls that are below seven, decrease the amount of tokens. <br><br>But beware, it is possible to get a negative amount of tokens which add to your total study time! At the end, each token is converted into a minuete of break and studyRoulette will give you 3 study schedules to choose from.<br><br> Hope you have fun!<br><br><br>Currently, studyRoulette works best on a laptop or computer screen.
 
 # Screenshots
 Choose from 3 difficulties for different senarios :)<br>
@@ -18,6 +18,11 @@ Select how long you want to study for:<br>
 
 Curated study schedules:<br>
 <p align="center"><img width="700" alt="image" src="https://github.com/user-attachments/assets/25c23461-d0df-4f55-bfa6-ca26647e2fd5"></p>
+
+# Roadmap
+* [ ] Make website accessible and scale to different devices such as phones
+* [ ] Add different wallpapers
+* [ ] Add timer function for recommended study schedules
 
 # Details
 Live site: https://asgr.me/projects/studyRoulette/<br>
