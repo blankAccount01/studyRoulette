@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Study Roulette</title>
+    <link rel="icon" href="./assets/icon.png" type="image/png">
 </head>
 <style>
     :root{
@@ -40,17 +41,20 @@
         height: 340px;
         border-radius: 5px;
         background-color: rgba(255, 255, 255,0.8);
-        font-size: 20px;
+        font-size: min(3vw,20px);
         font-weight: 600;
         display: flex;
         align-items: center;
         justify-content: center;
         text-align: center;
-        padding: 20px;
+        padding: min(1%,20px);
         box-sizing: border-box;
-        line-height: 25px;
+        line-height: min(3vw,25px);
         flex-direction: column;
         align-items: center;
+        color: #000;
+        border-style: solid;
+        border-color: #333;
     }
 
     #sliderContainer {
@@ -65,13 +69,13 @@
         flex-direction: column;
         justify-content: space-between;
         margin-left: 30px;
-        height: 240px;
+        height: clamp(120px,32vw,240px);
         align-items: flex-start;
-        width: 240px;
+        width: clamp(120px,32vw,240px);
     }
     #sliderMain{
-        width: 200px;
-        height: 200px;
+        width: clamp(100px,30vw,200px);
+        height: clamp(100px,30vw,200px);
         border-radius: 50%;
         border: 20px solid rgba(0, 0, 0, 0.3);
         position: relative;
@@ -107,25 +111,31 @@
         height: 50px;
         border-radius: 20px;
         font-size: 20px;
+        color: #000;
+        border-style: solid;
+        border-color: #333;
     }
 
     .difficultyText {
-        font-size: 30px;
+        font-size: clamp(18px,2vw,35px);
         font-weight: bold;
         margin-bottom: 10px;
+        height: 30px;
+        vertical-align: middle;
+
     }
 
     #begin{
-        width:240px;
-        height: 100px;
+        width: clamp(120px,32vw,240px);
+        height: clamp(50px,15vw,100px);
         font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-        font-size: 30px;
+        font-size: clamp(20px,3.5vw,35px);
         font-weight: 600;
     }
 
     #conversionCalculator{
         font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-        font-size: 30px;
+        font-size: clamp(18px,3vw,35px);
     }
 
     #threeJSRender {
@@ -141,11 +151,10 @@
         padding: 10px 30px;
         background-color: rgb(255, 255, 255);
         border-radius: 30px ;
-        font-size: 50px;
+        font-size: clamp(35px,5vw,50px);
         font-family: Arial, Helvetica, sans-serif;
         font-weight: bold;
         color: var(--themeColor);
-        user-select: none;
     }
     #tokenText {
         position: absolute;
@@ -154,11 +163,11 @@
         padding: 10px 30px;
         background-color: rgb(255, 255, 255);
         border-radius: 30px ;
-        font-size: 50px;
+        font-size: clamp(35px,5vw,50px);
         font-family: Arial, Helvetica, sans-serif;
         font-weight: bold;
         color: var(--themeColor);
-        user-select: none;
+
         text-align: right;
         white-space: nowrap;
     }
@@ -168,24 +177,24 @@
         top: 50%;
         transform: translate(0%, -50%);
         right: 100%;
-        padding: 10px 30px;
+        padding: 10px clamp(10px,2vw,25px);
         background-color: rgb(255, 255, 255);
         border-radius: 30px ;
         color: var(--themeColor);
-        user-select: none;
         text-align: right;
         white-space: nowrap;
+        
     }
     .info{
         font-weight: bold;
         font-family: Arial, Helvetica, sans-serif;
-        font-size: 28px;
+        font-size: clamp(18px,2vw,35px);
         margin-bottom: 5px;
         text-align: center;
     }
     #header{
         text-align: center;
-        font-size: 35px;
+        font-size: clamp(25px,4vw,35px);
         font-weight: bold;
         font-family: Arial, Helvetica, sans-serif;
         margin-bottom: 5px;
@@ -209,7 +218,7 @@
     }
     @keyframes move {
         0%{
-            right: 82%;
+            right: calc(100% - clamp(150px,17vw,300px));
         }
         100%{
             right: 100%;
@@ -220,7 +229,7 @@
             right: 100%;
         }
         100%{
-            right: 82%;
+            right: calc(100% - clamp(150px,17vw,300px));
         }
     }
     #resultBar{
@@ -231,7 +240,7 @@
         padding: 10px;
         background-color: rgb(255, 255, 255);
         border-radius: 10px ;
-        font-size: 40px;
+        font-size: clamp(20px,3vw,40px);
         font-weight: bold;
         color: var(--themeColor);
         font-family: Arial, Helvetica, sans-serif;
@@ -275,7 +284,7 @@
         border-radius: 10px;
         background-color: #333;
         width: 100%;
-        height: 50px;
+        height: clamp(30px,5vw,50px);
         display: flex;
         flex-direction:row;
         overflow: hidden;
@@ -291,17 +300,17 @@
     #title{
         font-weight: bold;
         font-family: Arial, Helvetica, sans-serif;
-        font-size: 28px;
+        font-size: clamp(20px,3vw,30px);
         margin-bottom: 5px;
         text-align: center;
     }
     .optionContainer{
-        margin-top: 3%;
-        margin-bottom: 3%;
+        margin-top: min(3%,10px);
+        margin-bottom: min(3%,10px);
         width: 90%;
-        height: 50px;
+        height: clamp(60px,6vw,80px);
     }
-    .timelines:hover{
+    .timelines:hover, .timelines:active{
         transform: scale(1.05);
         image-rendering: crisp-edges;
         filter: blur(0.2px);
@@ -314,7 +323,7 @@
         text-align: center;
         font-weight: bold;
         font-family: Arial, Helvetica, sans-serif;
-        font-size: 20px;
+        font-size: clamp(12px,3vw,20px);
         color: rgb(255, 255, 255);
         opacity: 0;
         transition: opacity 0.5s;
@@ -327,24 +336,25 @@
         top: 50%;
         left: 50%;
         transform: translate(-50%, -50%);
-        width: 100vw;
-        height: 100vh;
-        background-image: url(backsplash.png);
+        width: calc(var(--vw, 1vw) * 100);
+        height: calc(var(--vh, 1vh) * 100);
+        background-image: url();
         background-size: cover;
+        background-position: center;
     }
     .background::after{
         content: '';
         background-color: rgba(0, 0, 0, 0.2);
         position: absolute;
-        z-index: 1;
-        width: 100vw;
-        height: 100vh;
+        z-index: 0;
+        width: calc(var(--vw, 1vw) * 100);
+        height: calc(var(--vh, 1vh) * 100);
     }
     canvas {
         position: absolute;
         top: 0;
         left: 0;
-        z-index: 1;
+        z-index: 0;
     }
     #restart{
         position: absolute;
@@ -357,19 +367,225 @@
         font-family: Arial, Helvetica, sans-serif;
         font-weight: bold;
         color: var(--themeColor);
-        user-select: none;
+    }
+    #restart2{
+        position: absolute;
+        top: 85%;
+        right: 3%;
+        padding: 10px 30px;
+        background-color: rgba(255, 255, 255,0.95);
+        border-radius: 30px ;
+        font-size: 30px;
+        font-family: Arial, Helvetica, sans-serif;
+        font-weight: bold;
+        color: var(--themeColor);
+    }
+    #nextTime{
+        position: absolute;
+        bottom: -50px;
+        left: 50%;
+        transform: translate(-50%, 0%);
+        padding: 10px 30px;
+        background-color: rgba(255, 255, 255,0.9);
+        border-radius: 30px ;
+        font-size: clamp(18px,2vw,35px);
+        font-family: Arial, Helvetica, sans-serif;
+        font-weight: bold;
+        color: var(--themeColor);
+        width: 50vw;
+        text-align: center;
+    }
+    body, html {
+        margin: 0;
+        padding: 0;
+        overflow: hidden;
+        width: 100%;
+        height: 100%;
+    }
+    * {
+        user-select:none;
+    }
+    *:not(#sliderMain):not(#infoBar):not(.optionContainer):not(#wallpaperButton):not(.wallpaperSelect):not(#timerContainer) {
+        box-sizing: border-box;
+        max-width: 100%;
+        max-height: 100%;
+        overflow: hidden;
+    }
+    
+    #instruction2{
+        z-index: 5;
+        position: absolute;
+        width: 40vw;
+        top: 60%;;
+        left:20%;
+        transform: translate(-50%, -50%);
+        opacity: 0;
+    }
+    @media (max-height: 800px) {
+        #instruction2 {
+            top: 85%;
+        }
+    }
+    .animateFadeIn{
+        animation: fadeIn 0.5s ease-out forwards;
+    }
+    .animateFadeOut{
+        animation: fadeOut 0.5s ease-out forwards;
+    }
+    @keyframes fadeIn {
+        25%{
+            opacity: 0;
+        }
+        100%{
+            opacity: 1;
+        }
+    }
+    @keyframes fadeOut {
+        0%{
+            opacity: 1;
+        }
+        25%{
+            opacity: 1;
+        }
+        100%{
+            opacity: 0;
+        }
+    }
+    #wallpaperButton{
+        position: absolute;
+        top: 8%;
+        right:0%;
+        transform: translate(-50%, -50%);
+    }
+
+    #wallpaperMenu {
+        z-index: 5;
+        position: absolute;
+        top: 10%;
+        right:2%;
+        display: flex;
+        height: 50px;
+        justify-content: flex-start;
+        border: #ffffff;
+        border-width: 10px;
+        border-style: solid;
+        background-color: #ffffff;
+        flex-direction: row;
+        border-radius: 20px;
+        height: 100px;
+        gap: 10px;
+        opacity: 0;
+    }
+    .wallpaperSelect {
+        flex-grow: 1;
+        margin-right: auto;
+        width: 80px;
+        height: 80px;
+        background-size:cover;
+        background-position: center;
+        background-repeat: no-repeat;
+        border-radius: 10px;
+    }
+    ul {
+        list-style: none;
+        padding-left: 0;
+        
+    }
+    #wallpaper1{
+        background-image: url(./assets/backsplash.png);
+    }
+    #wallpaper2{
+        background-image: url(./assets/backsplash2.png);
+    }
+    #wallpaper3{
+        background-image: url(./assets/backsplash3.png);
+    }
+    #timerContainer{
+        font-family: sans-serif;
+        display: grid;
+        height: clamp(400px,40vh,70vh);
+        width: 50vw;
+        place-items: center;
+        border-radius: 20px;
+        background-color: rgba(255, 255, 255, 0.8);
+        position: absolute;
+        top: 50%;
+        left:50%;
+        transform: translate(-50%, -50%);
+        align-content: center;
+    }
+    .base-timer {
+        position: relative;
+        width: 300px;
+    }
+
+    .base-timer__svg {
+        transform: scaleX(-1);
+    }
+
+    .base-timer__circle {
+        fill: none;
+        stroke: none;
+    }
+
+    .base-timer__path-elapsed {
+        stroke-width: 7px;
+        stroke: grey;
+    }
+
+    .base-timer__path-remaining {
+        stroke-width: 7px;
+        stroke-linecap: round;
+        transform: rotate(90deg);
+        transform-origin: center;
+        transition: 1s linear all;
+        fill-rule: nonzero;
+        stroke: currentColor;
+    }
+
+    .base-timer__path-remaining.green {
+        color: rgb(65, 184, 131);
+    }
+    .base-timer__path-remaining.blue {
+        color: rgb(85, 163, 235);
+    }
+
+    .base-timer__path-remaining.orange {
+        color: orange;
+    }
+
+    .base-timer__path-remaining.red {
+        color: red;
+    }
+
+    .base-timer__label {
+        position: absolute;
+        width: 50vw;
+        height: 50vw;
+        top: 0;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 48px;
+        font-family: Arial, Helvetica, sans-serif;
     }
 </style>
-<body style="overflow: hidden;">
-    <div id="introScreen" style="display: block;">
-        <div class="background"></div>
-        <div class="container">
-            <div style="color: #ffffff; margin-bottom: 40px; font-size: 60px; font-family:Arial, Helvetica, sans-serif;">Study Roulette</div>
+<body>
+    <div class="background" style="z-index: 0;"></div>
+    <div id="introScreen" style="display: block; opacity: 0;" style="overflow: hidden; ">
+        <div class="container" style >
+            <div style="color: #ffffff; margin-bottom: 40px; font-size: 60px; font-family:Arial, Helvetica, sans-serif;" style="overflow: hidden;">Study Roulette</div>
             <button class="button" page="2">Play</button>
         </div>
+        <div id="wallpaperButton"><img width="50px" src="./assets/wallpaperButton.png" alt="wallpaperButton"></div>
+        <ul id="wallpaperMenu">
+            <li class="wallpaperSelect" id="wallpaper1"></li>
+            <li class="wallpaperSelect" id="wallpaper2"></li>
+            <li class="wallpaperSelect" id="wallpaper3"></li>
+            
+        </ul>
     </div>
-    <div id="stageSelect" style="display: none;">
-        <div class="background"></div>
+    <div id="stageSelect" style="display: none; opacity: 0;" style="overflow: hidden;">
         <div class="container" style="width: 80vw;">
             <div class="stageButtonContainer">
                 <button class="stageButton" page="3" difficulty="easy">
@@ -406,9 +622,8 @@
             
         </div>
     </div>
-    <div id="studySelect" style="visibility: hidden;">
-        <div class="background"></div>
-        <div class="container" style="flex-direction: row; border-radius: 20px; background-color: rgba(255, 255, 255, 0.8);">
+    <div id="studySelect" style="visibility: hidden; opacity: 0;">
+        <div class="container" style="flex-direction: row; border-radius: 20px; background-color: rgba(255, 255, 255, 0.8); height: clamp(200px,47vw,360px); width: clamp(50%,600px,90%); padding: clamp(10px,4vw,20px);">
             <div style="display: flex; align-items: center;"></div>
                 <div id="sliderContainer">
                     <div id="sliderMain">
@@ -425,9 +640,9 @@
             </div>
         </div>
     </div>
-    <div id="mainApp" style="display: none; overflow:hidden">
+    <div id="mainApp" style="display: none; overflow:hidden; opacity: 0;">
         <div id="threeJSRender">
-            <div class="background" style="z-index: 1;"></div>
+            <div class="background" style="z-index: 0; background-color: #6cdc71;"></div>
         </div>
         <div id="tokenText" style="z-index: 5">Tokens: 5</div>
         <div id="endButton" style="z-index: 5">End</div>
@@ -447,26 +662,42 @@
             <div id="barButton">||</div>          
         </div>
         <div id="resultBar" style="z-index: 5">Rolled 7 => Tokens: +0%</div>
+        <div id="instruction2"><img src="./assets/Instruction2.png" alt="Tap on me!"></div>
     </div>
-    <div id="results" style="display: none;">
-        <div class="background" style="z-index: 0;"></div>
+    <div id="results" style="display: none; opacity: 0;">
         <div id="options">
             <div id="title">Recommended Study Schedules</div>
             <div class="optionContainer">
-                <div id="title" style="text-align: left; font-size: 20px;">Option 1:</div>
+                <div id="title" style="text-align: left; font-size: clamp(15px,3vw,20px);">Option 1:</div>
                 <div class="timelines" id="option1"></div>
             </div>
             <div class="optionContainer">
-                <div id="title" style="text-align: left; font-size: 20px;">Option 2:</div>
+                <div id="title" style="text-align: left; font-size: clamp(15px,3vw,20px);">Option 2:</div>
                 <div class="timelines" id="option2"></div>
             </div>
             <div class="optionContainer">
-                <div id="title" style="text-align: left; font-size: 20px;">Option 3:</div>
+                <div id="title" style="text-align: left; font-size: clamp(15px,3vw,20px);">Option 3:</div>
                 <div class="timelines" id="option3"></div>
             </div>
-            <div class="celebration" id="title" style="font-size: 20px; margin-top: 40px;">Thank you for using Study Roulette 🥳</div>
+            <div class="celebration" id="title" style="font-size: clamp(15px,3vw,25px); margin-top: clamp(15px,3vw,40px);">Thank you for using Study Roulette 🥳</div>
         </div>
+        <div style="position: absolute; width: 300px; top:45%; right: -10vw; transform: translate(-50%, -50%); width: 25vw;"><img src="./assets/Instruction1.png" alt="Hover over me!"></div>
+        <div style="position: absolute; width: 300px; top:60%; left: 13vw; transform: translate(-50%, -50%); width: 25vw;"><img src="./assets/Instruction3.png" alt="Click on me!"></div>
         <div id="restart">
+            Restart?
+        </div>
+        
+    </div>
+    <div id="timerApp" style="display: none; opacity: 0;">
+        
+        <div id="timerContainer" style="z-index: 5;">
+            <div id="timerState" style="font-size: 40px; font-family: Arial, Helvetica, sans-serif;">Study</div>
+            <div id="timer"></div>
+            <div id="nextTime">
+                Next: 30min Rest
+            </div>
+        </div>
+        <div id="restart2">
             Restart?
         </div>
         
@@ -498,20 +729,67 @@
     let easy =   [2.0,1.6,1.2,0.8,0.4,0,-0.2,-0.4,-0.6,-0.8,-1.0];
     let hard =   [1.0,0.8,0.6,0.4,0.2,0,-0.4,-0.8,-1.2,-1.6,-2.0];
     let sliderTime = 3*60;
+    let firstTime = true;
+    let clickedDice = false;
+    let fading = false;
+    let chosenOption = "";
+    let option1 = [];
+    let option2 = [];
+    let option3 = [];
+    let buttonDebounce = false;
+    const delay = ms => new Promise(resolve => setTimeout(resolve, ms));
+    document.getElementById("introScreen").classList.add('animateFadeIn')
 
+    const background = localStorage.getItem("background");
+    if (background == "backsplash"){
+        document.querySelectorAll(".background").forEach(element =>{
+            element.style.backgroundImage = "url('./assets/backsplash.png')";
+        });
+    }else if (background == "backsplash2"){
+        document.querySelectorAll(".background").forEach(element =>{
+            element.style.backgroundImage = "url('./assets/backsplash2.png')";
+        });
+    }else if (background == "backsplash3"){
+        document.querySelectorAll(".background").forEach(element =>{
+            element.style.backgroundImage = "url('./assets/backsplash3.png')";
+        });
+    }else{
+        document.querySelectorAll(".background").forEach(element =>{
+            element.style.backgroundImage = "url('./assets/backsplash.png')";
+        });
+    }
+    
+
+    function addMultipleEventListeners(element, events, handler) {
+        events.split(' ').forEach(event => {
+            element.addEventListener(event, handler);
+        });
+    }
     function change(page) {
         if (page==1){
+            chosenOption = "";
+            option1 = [];
+            option2 = [];
+            option3 = [];
             document.getElementById("introScreen").style.display='block';
             document.getElementById("stageSelect").style.display='none';
             document.getElementById("studySelect").style.visibility='hidden';
             document.getElementById("mainApp").style.display='none';
             document.getElementById("results").style.display='none';
+            document.getElementById("timerApp").style.display='none';
+            if (document.getElementById("results").classList.contains('animateFadeIn')){document.getElementById("results").classList.remove('animateFadeIn')}
+            if (document.getElementById("timerApp").classList.contains('animateFadeIn')){document.getElementById("timerApp").classList.remove('animateFadeIn');}
+            document.getElementById("introScreen").classList.add('animateFadeIn')
         }else if (page==2){
             document.getElementById("introScreen").style.display='none';
             document.getElementById("stageSelect").style.display='block';
             document.getElementById("studySelect").style.visibility='hidden';
             document.getElementById("mainApp").style.display='none';
             document.getElementById("results").style.display='none';
+            document.getElementById("timerApp").style.display='none';
+            if (document.getElementById("introScreen").classList.contains('animateFadeIn')){document.getElementById("introScreen").classList.remove('animateFadeIn');}
+            document.getElementById("stageSelect").classList.add('animateFadeIn');
+
         }
         else if (page==3){
             document.getElementById("introScreen").style.display='none';
@@ -519,6 +797,9 @@
             document.getElementById("studySelect").style.visibility='visible';
             document.getElementById("mainApp").style.display='none';
             document.getElementById("results").style.display='none';
+            document.getElementById("timerApp").style.display='none';
+            if (document.getElementById("stageSelect").classList.contains('animateFadeIn')){document.getElementById("stageSelect").classList.remove('animateFadeIn');}
+            document.getElementById("studySelect").classList.add('animateFadeIn');
             
         }else if (page==4){
             document.getElementById("introScreen").style.display='none';
@@ -526,7 +807,17 @@
             document.getElementById("studySelect").style.visibility='hidden';
             document.getElementById("mainApp").style.display='block';
             document.getElementById("results").style.display='none';
+            document.getElementById("timerApp").style.display='none';
+            if (document.getElementById("studySelect").classList.contains('animateFadeIn')){document.getElementById("studySelect").classList.remove('animateFadeIn');}
+            document.getElementById("mainApp").classList.add('animateFadeIn');
             renderThreeJS();
+            if (firstTime == true){
+                setTimeout(() => {
+                    if (clickedDice == false){
+                        document.getElementById('instruction2').classList.add('animateFadeIn');
+                    }
+                }, 5000)
+            }
         }
         else if (page==5){
             document.getElementById("introScreen").style.display='none';
@@ -534,7 +825,20 @@
             document.getElementById("studySelect").style.visibility='hidden';
             document.getElementById("mainApp").style.display='none';
             document.getElementById("results").style.display='block';
+            document.getElementById("timerApp").style.display='none';
+            if (document.getElementById("mainApp").classList.contains('animateFadeIn')){document.getElementById("mainApp").classList.remove('animateFadeIn');}
+            document.getElementById("results").classList.add('animateFadeIn');
             renderResults();
+        }else if (page ==6){
+            document.getElementById("introScreen").style.display='none';
+            document.getElementById("stageSelect").style.display='none';
+            document.getElementById("studySelect").style.visibility='hidden';
+            document.getElementById("mainApp").style.display='none';
+            document.getElementById("results").style.display='none';
+            document.getElementById("timerApp").style.display='block';
+            if (document.getElementById("results").classList.contains('animateFadeIn')){document.getElementById("results").classList.remove('animateFadeIn');}
+            document.getElementById("timerApp").classList.add('animateFadeIn');
+            renderTimer();
         }
     }
     function difficultySelect(difficultyIn) {
@@ -563,26 +867,31 @@
     document.addEventListener("DOMContentLoaded", ()=>{
         let pageButtons = document.querySelectorAll('[page]');
             pageButtons.forEach(button => {
-                button.addEventListener("click", () => {
+                addMultipleEventListeners(button, 'click touchstart',()=>{
                     let page = button.getAttribute("page");
                     change(Number(page));
-            });
+                });
         });
         let stageButtons = document.querySelectorAll('[difficulty]');
             stageButtons.forEach(button => {
-                button.addEventListener("click", () => {
+                addMultipleEventListeners(button, 'click touchstart',()=>{
                     let difficulty = button.getAttribute("difficulty");
                     difficultySelect(difficulty);
-            });
+                });
         });
-        document.getElementById('endButton').addEventListener('click', function() {
+        addMultipleEventListeners(document.getElementById('endButton'), 'click touchstart',()=>{
             event.stopPropagation();
             cancelAnimationFrame(animationId);
             renderer.dispose();
             renderer.domElement.remove();
             change(5);
-        });
-        document.getElementById('barButton').addEventListener('click', function() {
+            buttonDebounce = true;
+            delay(500).then(() => {
+                buttonDebounce = false
+            });
+
+        })
+        addMultipleEventListeners(document.getElementById('barButton'), 'click touchstart', ()=>{
             event.stopPropagation();
             if (!sliderMoving){
                 if (sliderOut){
@@ -599,19 +908,75 @@
                     sliderOut = true;
                 }
             }
-        });
-        document.getElementById('restart').addEventListener('click', function() {
-            change(1);
-        });
-        document.querySelector(".celebration").addEventListener("mouseenter", ()=>{
+        })
+        addMultipleEventListeners(document.getElementById('restart'), 'click touchstart', ()=>{
+            if (buttonDebounce==false){
+                change(1);
+            }
+        })
+        document.querySelector(".celebration").addEventListener("pointerenter", ()=>{
             window.confetti({
                 particleCount:100,
                 spread:70,
                 origin:{x:0.5,y:0.8}
             })
         });
+        let wallpaperMenu = document.getElementById('wallpaperMenu');
+        wallpaperMenu.addEventListener('animationstart', ()=>{
+            fading = true;
+        });
+        wallpaperMenu.addEventListener('animationend', ()=>{
+            fading = false;
+            
+        });
+        function fade(){
+            if (fading==false){
+                if (wallpaperMenu.classList.contains('animateFadeIn')){wallpaperMenu.classList.add('animateFadeOut'); wallpaperMenu.classList.remove('animateFadeIn'); }
+                else if (wallpaperMenu.classList.contains('animateFadeOut')){ wallpaperMenu.classList.add('animateFadeIn');wallpaperMenu.classList.remove('animateFadeOut'); }
+                else{wallpaperMenu.classList.add('animateFadeIn');}
+            }
+        }
 
+        addMultipleEventListeners(document.getElementById("wallpaperButton"), "click touchstart",fade);
+        addMultipleEventListeners(document.getElementById("wallpaper1"), "click touchstart",()=>{
+            document.querySelectorAll(".background").forEach(element =>{
+                element.style.backgroundImage = "url('./assets/backsplash.png')";
+            })
+            localStorage.setItem("background", "backsplash");
+        });
+        addMultipleEventListeners(document.getElementById("wallpaper2"), "click touchstart",()=>{
+            document.querySelectorAll(".background").forEach(element =>{
+                element.style.backgroundImage = "url('./assets/backsplash2.png')";
+            })
+            localStorage.setItem("background", "backsplash2");
+        });
+        addMultipleEventListeners(document.getElementById("wallpaper3"), "click touchstart",()=>{
+            document.querySelectorAll(".background").forEach(element =>{
+                element.style.backgroundImage = "url('./assets/backsplash3.png')";
+            })
+            localStorage.setItem("background", "backsplash3");
+        });
+        document.querySelectorAll('.timelines').forEach(element =>{
+            addMultipleEventListeners(element, 'click touchstart',()=>{
+                if (element.id == "option1"){chosenOption="option1"}
+                if (element.id == "option2"){chosenOption="option2"}
+                if (element.id == "option3"){chosenOption="option3"}
+                change(6);
+            })
+        })
+        
     });
+
+    function adjustViewport() {
+        const vh = window.innerHeight *0.01;
+        const vw = window.innerWidth *0.01;
+        document.documentElement.style.setProperty('--vh',`${vh}px`);
+        document.documentElement.style.setProperty('--vw',`${vw}px`);
+    }
+
+    adjustViewport();
+    window.addEventListener('resize',adjustViewport);
+
     const slider = document.getElementById("sliderMain");
     const thumb = document.getElementById("sliderThumb");
     const sliderValue = document.getElementById("sliderValue");
@@ -636,9 +1001,13 @@
         const rect = slider.getBoundingClientRect();
         const centerX = rect.left + sliderRadius;
         const centerY = rect.top + sliderRadius;
-
-        const dx = e.clientX - centerX;
-        const dy = e.clientY - centerY;
+        
+        const isTouchEvent = e.touches && e.touches.length > 0;
+        const clientX = isTouchEvent ? e.touches[0].clientX : e.clientX;
+        const clientY = isTouchEvent ? e.touches[0].clientY : e.clientY;
+        const dx = clientX - centerX;
+        const dy = clientY - centerY;
+        
 
         let angle = Math.atan2(dy, dx) * (180 / Math.PI);
         angle = (angle + 90) % 360; 
@@ -652,9 +1021,15 @@
         return tokens;
     }
 
-    thumb.addEventListener("mousedown", function(e) {
+    thumb.addEventListener("mousedown", handleThumb);
+    thumb.addEventListener("touchstart", handleThumb, {passive: false})
+    
+    function handleThumb(e) {
         e.preventDefault();
-        const onMouseMove = (e) => {
+        const isTouchEvent = e.type === "touchstart";
+
+        const onMove = (e) => {
+            const event = isTouchEvent ? e.touches[0] : e;
             currentAngle = calculateAngle(e);
             setThumbPosition(currentAngle);
 
@@ -664,14 +1039,14 @@
             conversionValue.textContent= time/60+' hours = '+tokens+' tokens';;
         };
 
-        const onMouseUp = () => {
-            document.removeEventListener("mousemove", onMouseMove);
-            document.removeEventListener("mouseup", onMouseUp);
+        const onEnd = () => {
+            document.removeEventListener(isTouchEvent ? "touchmove":"mousemove", onMove);
+            document.removeEventListener(isTouchEvent ? "touchend":"mouseup", onEnd);
         };
 
-        document.addEventListener("mousemove", onMouseMove);
-        document.addEventListener("mouseup", onMouseUp);
-    });
+        document.addEventListener(isTouchEvent ? "touchmove":"mousemove", onMove, {passive:false});
+        document.addEventListener(isTouchEvent ? "touchend":"mouseup", onEnd,{passive:false});
+    }
 
     
     setThumbPosition(0);
@@ -711,20 +1086,22 @@
         scene.add(light2);
 
         const loader = new GLTFLoader();
-        let scale = 0.6;
+        let threshold = (window.innerWidth *0.008)/10;
+        let tooBig = threshold > 0.65;
+        let scale = tooBig ? 0.65 : threshold;
         let dice;
-        loader.load('./dice.glb', function(gltf){
+        loader.load('./assets/dice.glb', function(gltf){
             dice = gltf.scene;
             dice.scale.set(scale, scale, scale);
-            dice.position.set(-1, 1, 0);
+            dice.position.set(-(window.innerWidth *0.00095), (window.innerWidth *0.00095), 0);
             scene.add(dice);
         });
 
         let dice2;
-        loader.load('./dice.glb', function(gltf){
+        loader.load('./assets/dice.glb', function(gltf){
             dice2 = gltf.scene;
             dice2.scale.set(scale, scale, scale);
-            dice2.position.set(1, -1, 0);
+            dice2.position.set((window.innerWidth *0.00095), -(window.innerWidth *0.00095), 0);
             scene.add(dice2);
         });
 
@@ -765,7 +1142,6 @@
                     }else{
                         d1Value = getSide(dice, camera);
                         d2Value = getSide(dice2, camera);
-                        console.log("Combined "+(d2Value+d1Value));
                         tokenCalc((d2Value+d1Value));
                         rolling = false;
                         aligned=false;
@@ -868,14 +1244,21 @@
             targetRotation2.y = Math.round(targetRotation2.y / (Math.PI / 2)) * (Math.PI / 2);
             targetRotation2.z = Math.round(targetRotation2.z / (Math.PI / 2)) * (Math.PI / 2);
         }
-        window.addEventListener('click', ()=>{
+        window.addEventListener('click', userAction);
+        window.addEventListener('touchstart', userAction);
+        function userAction(){
             if (firstRoll == true){
                 firstRoll = false;
             }else{
+                clickedDice = true;
+                let instruction = document.getElementById('instruction2')
+                if (instruction.classList.contains('animateFadeIn')){
+                    instruction.classList.remove('animateFadeIn');
+                    instruction.classList.add('animateFadeOut');
+                }
                 rollDice();
             }
-            
-        });
+        }
         window.addEventListener('resize', ()=>{
             renderer.setSize(container.clientWidth, container.clientHeight);
             camera.aspect = container.clientWidth / container.clientHeight;
@@ -897,11 +1280,15 @@
         let timeline = document.getElementById('option1')
         let targetDiv;
         let labelDiv;
+        document.getElementById('option1').replaceChildren();
+        document.getElementById('option2').replaceChildren();
+        document.getElementById('option3').replaceChildren();
         for (let i = 0; i < breaks; i++) {
             targetDiv = document.createElement('div');
             targetDiv.style.flex = ""+segSize
             labelDiv = document.createElement('div');
             labelDiv.innerText = segSize+"min"
+            option1.push(segSize);
             labelDiv.className = "timeLabel";
             targetDiv.appendChild(labelDiv);
             timeline.appendChild(targetDiv);
@@ -911,6 +1298,7 @@
             targetDiv.className = "restSegment";
             labelDiv = document.createElement('div');
             labelDiv.innerText = Math.round(tokens/breaks)+"min"
+            option1.push(Math.round(tokens/breaks));
             labelDiv.className = "timeLabel";
             targetDiv.appendChild(labelDiv);
             timeline.appendChild(targetDiv);
@@ -922,6 +1310,7 @@
         targetDiv.style.flex = ""+Math.round(totalTime/2);
         labelDiv = document.createElement('div');
         labelDiv.innerText = Math.round(totalTime/2)+"min"
+        option2.push(Math.round(totalTime/2));
         labelDiv.className = "timeLabel";
         targetDiv.appendChild(labelDiv);
         timeline2.appendChild(targetDiv);
@@ -931,6 +1320,7 @@
         targetDiv.className = "restSegment";
         labelDiv = document.createElement('div');
         labelDiv.innerText = tokens+"min"
+        option2.push(tokens);
         labelDiv.className = "timeLabel";
         targetDiv.appendChild(labelDiv);
         timeline2.appendChild(targetDiv);
@@ -939,6 +1329,7 @@
         targetDiv.style.flex = ""+Math.round(totalTime/2);
         labelDiv = document.createElement('div');
         labelDiv.innerText = Math.round(totalTime/2)+"min"
+        option2.push(Math.round(totalTime/2));
         labelDiv.className = "timeLabel";
         targetDiv.appendChild(labelDiv);
         timeline2.appendChild(targetDiv);
@@ -948,6 +1339,7 @@
         targetDiv.style.flex = ""+totalTime;
         labelDiv = document.createElement('div');
         labelDiv.innerText = totalTime+"min"
+        option3.push(totalTime);
         labelDiv.className = "timeLabel";
         targetDiv.appendChild(labelDiv);
         timeline3.appendChild(targetDiv);
@@ -957,9 +1349,162 @@
         targetDiv.className = "restSegment";
         labelDiv = document.createElement('div');
         labelDiv.innerText = tokens+"min"
+        option3.push(tokens);
         labelDiv.className = "timeLabel";
         targetDiv.appendChild(labelDiv);
         timeline3.appendChild(targetDiv);
+
+    }
+
+    function renderTimer(){
+        Notification.requestPermission();
+
+        const FULL_DASH_ARRAY = 283;
+        const WARNING_THRESHOLD = 10;
+        const ALERT_THRESHOLD = 5;
+
+        const COLOR_CODES = {
+            study: {
+                color:"green"
+            },
+            break: {
+                color: "blue",
+            }
+        };
+
+        let TIME_LIMIT = 0
+        let timePassed = 0;
+        let timeLeft = TIME_LIMIT;
+        let timerInterval = null;
+        let remainingPathColor = COLOR_CODES.study.color;
+        let timeModifier = 1;
+        let timoutID;
+        const delay = ms => new Promise(resolve => timoutID = setTimeout(resolve, ms));
+
+        document.getElementById("timer").innerHTML = `
+            <div class="base-timer">
+            <svg class="base-timer__svg" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+                <g class="base-timer__circle">
+                <circle class="base-timer__path-elapsed" cx="50" cy="50" r="45"></circle>
+                <path
+                    id="base-timer-path-remaining"
+                    stroke-dasharray="283"
+                    class="base-timer__path-remaining ${remainingPathColor}"
+                    d="
+                    M 50, 50
+                    m -45, 0
+                    a 45,45 0 1,0 90,0
+                    a 45,45 0 1,0 -90,0
+                    "
+                ></path>
+                </g>
+            </svg>
+            <span id="base-timer-label" class="base-timer__label">${formatTime(
+                timeLeft
+            )}</span>
+            </div>
+        `;
+        addMultipleEventListeners(document.getElementById('restart2'), 'click touchstart',()=>{
+            change(1);
+            onTimesUp();
+            clearTimeout(timoutID);
+        })
+
+        async function processTimer(array) {
+            for (let i = 0; i < array.length; i++){
+                let number = array[i];
+
+                if (i % 2 === 0){
+                    document.getElementById('timerState').textContent='Study'
+                    document
+                    .getElementById("base-timer-path-remaining")
+                    .classList.remove(COLOR_CODES.break.color);
+                    document
+                    .getElementById("base-timer-path-remaining")
+                    .classList.add(COLOR_CODES.study.color);
+                    if (Notification.permission == "granted" && i!=0){
+                        new Notification("Time to study!");
+                    }
+                }else{
+                    document.getElementById('timerState').textContent='Break'
+                    document
+                    .getElementById("base-timer-path-remaining")
+                    .classList.remove(COLOR_CODES.study.color);
+                    document
+                    .getElementById("base-timer-path-remaining")
+                    .classList.add(COLOR_CODES.break.color);;
+                    if (Notification.permission == "granted" && i!=0){
+                        new Notification("Break Time!");
+                    }
+                }
+                if ((i+1) < array.length){
+                    if (i % 2 === 0){
+                        document.getElementById("nextTime").textContent='Next: '+array[i+1]+'min break'
+                    }else{
+                        document.getElementById("nextTime").textContent='Next: '+array[i+1]+'min study'
+                    }
+                }else{
+                    document.getElementById("nextTime").textContent='Next: Finish'
+                }
+                TIME_LIMIT = (number*60)+1;
+                timePassed = 0;
+                timeLeft = TIME_LIMIT;
+                startTimer();
+                await delay(TIME_LIMIT*(1000/timeModifier));
+            }
+        }
+        if (chosenOption=='option1'){processTimer(option1);}
+        else if (chosenOption=='option2'){processTimer(option2);}
+        else if (chosenOption=='option3'){processTimer(option3);}
+        function onTimesUp() {
+            clearInterval(timerInterval);
+            TIME_LIMIT = 0
+            timePassed = 0;
+            timeLeft = TIME_LIMIT;
+            timerInterval = null;
+            document.getElementById("base-timer-label").innerHTML = formatTime(
+                0
+                );
+        }
+
+        function startTimer() {
+            timerInterval = setInterval(() => {
+                timePassed = timePassed += 1;
+                timeLeft = TIME_LIMIT - timePassed;
+                document.getElementById("base-timer-label").innerHTML = formatTime(
+                timeLeft
+                );
+                setCircleDasharray();
+                if (timeLeft <= 0) {
+                    onTimesUp();
+                }
+            }, 1000/timeModifier);
+        }
+
+        function formatTime(time){
+            const minuetes = Math.floor(time / 60);
+            let seconds = time % 60;
+
+            if (seconds < 10) {
+            seconds = `0${seconds}`;
+            }
+
+            return `${minuetes}:${seconds}`;
+        }
+
+        function calculateTimeFraction() {
+            const rawTimeFraction = timeLeft / TIME_LIMIT;
+            return rawTimeFraction - (1 / TIME_LIMIT) * (1 - rawTimeFraction);
+        }
+
+        function setCircleDasharray() {
+            const circleDasharray = `${(
+                calculateTimeFraction() * FULL_DASH_ARRAY
+            ).toFixed(0)} 283`;
+            document
+                .getElementById("base-timer-path-remaining")
+                .setAttribute("stroke-dasharray", circleDasharray);
+        }
 
     }
     </script>
