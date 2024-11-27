@@ -11,7 +11,7 @@ Introducing studyRoulette, a web app where you roll dice to determine how your b
 
 # Screenshots
 Choose from 3 difficulties for different senarios :)<br>
-<p align="center"><img width="700" alt="image" src="https://github.com/user-attachments/assets/3c057184-dc54-4fc8-9700-4ea1c66353a4"></p>
+<p align="center"><img width="700" alt="image" src="https://github.com/user-attachments/assets/2583187b-82a0-414c-b192-65d365980c14"></p>
 
 Select how long you want to study for:<br>
 <p align="center"><img width="700" alt="image" src="https://github.com/user-attachments/assets/e2417c82-1b1a-452f-92dc-c7ad474a639f"></p>
@@ -19,12 +19,21 @@ Select how long you want to study for:<br>
 Curated study schedules:<br>
 <p align="center"><img width="700" alt="image" src="https://github.com/user-attachments/assets/25c23461-d0df-4f55-bfa6-ca26647e2fd5"></p>
 
+Integrated timers:<br>
+<p align="center"><img width="700" alt="image" src="https://github.com/user-attachments/assets/7247e84b-602e-4c75-88d9-b4fc988a3c62"></p>
+
+Different wallpapers:<br>
+<p align="center"><img width="700" alt="image" src="https://github.com/user-attachments/assets/096a9b1a-30f4-4959-b871-71ce5fc7f68b"></p>
+
 # Roadmap
-* [ ] Make website accessible and scale to different devices such as phones
-* [ ] Add different wallpapers
-* [ ] Add timer function for recommended study schedules
+* [x] Make website accessible and scale to different devices such as phones
+* [x] Add different wallpapers
+* [x] Add timer function for recommended study schedules
+* [x] Add animations features
+* [x] Add notifications features
+* [x] Add instructions to guide users
 
 # Details
 Live site: https://asgr.me/projects/studyRoulette/<br>
-Time taken: ~15 hours<br>
+Time taken: ~27 hours<br>
 Libraries used: canvas-confetti, three
